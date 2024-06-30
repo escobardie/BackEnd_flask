@@ -1,0 +1,24 @@
+Flask==3.0.3
+Flask-MySQL==1.5.2
+mysql-connector-python==8.4.0
+
+
+# ** instalamos el gestor de entorno virtual
+# pip install virtualenv
+
+# **instalamo entorno virtual:
+# virtualenv venv
+ 
+# ** activamos entorno virtula: 
+# .\venv\Scripts\activate
+
+# ** desactivamos el entorno: 
+# .\venv\Scripts\deactivate
+
+# ** lista de lo instalado en pip: 
+# pip list
+
+# * solucion para el conflico de scrip en windows *
+# Get-ExecutionPolicy -List
+# Set-ExecutionPolicy RemoteSigned -Scope CurrentUser 
+# * solucion para el conflico de scrip en windows *
