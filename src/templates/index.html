@@ -14,34 +14,19 @@
     <div class="container">
         <div class="card shadow">
             <div class="card-body">
-                <form action="/usuario" method="POST">
                     <div class="row mb-3">
                         <div class="col">
-                            <label>Nombre</label>
-                            <input type="text" class="form-control mb-3" name="nombre">
-                        </div>
-                        <div class="col">
-                            <label>Usuario</label>
-                            <input type="text" class="form-control mb-3" name="username">
-                        </div>
-                        <div class="col">
-                            <label>Clave</label>
-                            <input type="text" class="form-control mb-3" name="contrasena">
-                        </div>
-                        <div class="col">
-                            <button class="btn btn-primary mb-3 mt-4" type="submit">Guardar</button>
+                            <h1 class="text-center">Lista de tadas las Noticias</h1>
                         </div>
                     </div>
-                </form>
-
                 <!-- Tabla -->
                 <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th scope="col">#</th>
-                            <th scope="col">Usuario</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Clave</th>
+                            <th scope="col">titulo</th>
+                            <th scope="col">Descripcion</th>
+                            <th scope="col">foto</th>
                             <th scope="col">Editar</th>
                             <th scope="col">Borrar</th>
                         </tr>
@@ -51,11 +36,13 @@
                         {% for d in data %}
                             <tr>
                                 <td>{{d.id}}</td>
-                                <td>{{d.nombre}}</td>
-                                <td>{{d.apellido}}</td>
-                                <td>{{d.email}}</td>
+                                <td>{{d.titulo}}</td>
+                                <td>{{d.texto_articulo}}</td>
+                                <td>
+                                    <img src="{{url_for('static', filename=d.imagen)}}" alt="{{d.imagen}}"  style="width:100px;height:100px;">
+                                </td>
                                 <td><button class="btn btn-primary btn-sm" id="btn-edit{{d.id}}" data-bs-toggle="modal" data-bs-target="#modal{{d.id}}">Editar</button></td>
-                                <td><a href="{{url_for('eliminar', id=d.id)}}" class="btn btn-danger btn-sm">Borrar</a></td>
+                                <td><a href="{{url_for('eliminar_art', id=d.id)}}" class="btn btn-danger btn-sm">Borrar</a></td>
                             </tr>
 
                             <!-- modal -->
@@ -68,13 +55,17 @@
                                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="/editar/{{d.id}}" method="post">
-                                        <label>Nombre</label>
-                                        <input type="text" class="form-control mb-3" name="nombre" value="{{d.nombre}}">
-                                        <label>Usuario</label>
-                                        <input type="text" class="form-control mb-3" name="username" value="{{d.username}}">
-                                        <label>Clave</label>
-                                        <input type="text" class="form-control mb-3" name="contrasena" value="{{d.contrasena}}">
+                                    <form action="/editar_art/{{d.id}}" method="post" enctype="multipart/form-data">
+                                        <label>Titulo</label>
+                                        <input type="text" class="form-control mb-3" name="titulo" value="{{d.titulo}}">
+                                        <label>Contenido</label>
+                                        <input type="text" class="form-control mb-3" name="texto_articulo" value="{{d.texto_articulo}}">
+                                        <label>Imagen</label>
+                                        <div>
+                                        <img src="{{url_for('static', filename=d.imagen)}}" alt="{{d.imagen}}"  style="width:100px;height:100px;">
+                                        <input type="" class="form-control mb-3" name="imagen_anterior" value="{{d.imagen}}">
+                                        </div>
+                                        <input type="file" class="form-control mb-3" name="imagen" value="{{d.imagen}}">
                                   
                                 </div>
                                 <div class="modal-footer">

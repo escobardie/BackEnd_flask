@@ -4,6 +4,9 @@ from flask import Flask, render_template, request, redirect, url_for
 #importamos el modulo os para acceder mas facil a los directorios
 import os
 
+#Nos permitirá darle el nombre a la foto
+from datetime import datetime 
+
 # importamos para la base de datos
 import database as db
 
@@ -43,7 +46,7 @@ app = Flask(__name__, template_folder = template_dir)
 @app.route('/')
 def home():
     cursor = db.database.cursor()
-    cursor.execute("SELECT * FROM usuario")
+    cursor.execute("SELECT * FROM articulo")
     miResultado = cursor.fetchall()
     
     #Convertir los datos a diccionario
@@ -59,50 +62,126 @@ def home():
     return render_template('index.html', data=insertarObjectos)
 
 
-
-#Ruta para guardar usuarios en la bdd
-@app.route('/usuario', methods=['POST'])
-def addUser():
-    nombre = request.form['nombre']
-    apellido = 'ApellidoDefault'
-    email = 'email_default@default.com'
-    username = request.form['username']
-    contrasena = request.form['contrasena']
+# #Ruta para guardar usuarios en la bdd
+# @app.route('/usuario', methods=['POST'])
+# def addUser():
+#     nombre = request.form['nombre']
+#     apellido = 'ApellidoDefault'
+#     email = 'email_default@default.com'
+#     username = request.form['username']
+#     contrasena = request.form['contrasena']
     
 
-    if username and nombre and contrasena:
+#     if username and nombre and contrasena:
+#         cursor = db.database.cursor()
+#         sql = "INSERT INTO usuario (nombre, apellido, email, username, contrasena) VALUES (%s, %s, %s, %s, %s)"
+#         data = (nombre, apellido, email, username, contrasena)
+#         cursor.execute(sql, data)
+#         db.database.commit()
+#     return redirect(url_for('home'))
+
+
+# @app.route('/eliminar/<string:id>')
+# def eliminar(id):
+#     cursor = db.database.cursor()
+#     sql = "DELETE FROM usuario WHERE id = %s"
+#     data = (id,)
+#     cursor.execute(sql, data)
+#     db.database.commit()
+#     return redirect(url_for('home'))
+
+# @app.route('/editar/<string:id>', methods=['POST'])
+# def edit(id):
+#     nombre = request.form['nombre']
+#     username = request.form['username']
+#     contrasena = request.form['contrasena']
+
+#     if nombre and username and contrasena:
+#         cursor = db.database.cursor()
+#         sql = "UPDATE usuario SET nombre = %s, username = %s, contrasena = %s WHERE id = %s"
+#         data = (nombre, username, contrasena, id)
+#         cursor.execute(sql, data)
+#         db.database.commit()
+#     return redirect(url_for('home'))
+
+
+
+@app.route('/carga')
+def carga():
+    return render_template('carga.html')
+#Ruta para guardar usuarios en la bdd
+
+@app.route('/articulo_art', methods=['POST'])
+def articulo_art():
+    ##################
+    now= datetime.now()
+    tiempo= now.strftime("%Y%H%M%S") #Años horas minutos y segundos
+    ##################
+
+    titulo = request.form['titulo']
+    texto_articulo = request.form['texto_articulo']
+    foto = request.files['imagen']
+    
+    if foto.filename!='':
+        nuevoNombreFoto = tiempo+foto.filename #Concatena el nombre
+        foto.save("../src/static/media/noticias/img/"+ nuevoNombreFoto) #Lo guarda en la carpeta
+        # redefinimos la ruta para guardar
+        ruta_nuevoNombreFoto = "media/noticias/img/"+ nuevoNombreFoto
+
+    if titulo and texto_articulo and foto:
         cursor = db.database.cursor()
-        sql = "INSERT INTO usuario (nombre, apellido, email, username, contrasena) VALUES (%s, %s, %s, %s, %s)"
-        data = (nombre, apellido, email, username, contrasena)
+        sql = "INSERT INTO articulo (titulo, texto_articulo, imagen) VALUES (%s, %s, %s)"
+        data = (titulo, texto_articulo,ruta_nuevoNombreFoto)
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))
 
 
-@app.route('/eliminar/<string:id>')
-def eliminar(id):
+@app.route('/eliminar_art/<string:id>')
+def eliminar_art(id):
     cursor = db.database.cursor()
-    sql = "DELETE FROM usuario WHERE id = %s"
+    sql = "DELETE FROM articulo WHERE id = %s"
     data = (id,)
     cursor.execute(sql, data)
     db.database.commit()
     return redirect(url_for('home'))
 
-@app.route('/editar/<string:id>', methods=['POST'])
-def edit(id):
-    nombre = request.form['nombre']
-    username = request.form['username']
-    contrasena = request.form['contrasena']
+@app.route('/editar_art/<string:id>', methods=['POST'])
+def edit_art(id):
+    ##################
+    now= datetime.now()
+    tiempo= now.strftime("%Y%H%M%S") #Años horas minutos y segundos
+    ##################
+    titulo = request.form['titulo']
+    texto_articulo = request.form['texto_articulo']
+    foto = request.files['imagen']
 
-    if nombre and username and contrasena:
+    imagen_anterior = request.form['imagen_anterior']
+    
+    if foto.filename!='':
+        # print("entro por aca1")
+        nuevoNombreFoto=tiempo+foto.filename #Concatena el nombre
+        foto.save("../src/static/media/noticias/img/"+nuevoNombreFoto) #Lo guarda en la carpeta
+        # redefinimos la ruta para guardar
+        ruta_nuevoNombreFoto = "media/noticias/img/"+ nuevoNombreFoto
+
+    elif foto.filename == '':
+        foto = True
+        ruta_nuevoNombreFoto = imagen_anterior
+        # print("entro por aca 2")
+
+    if titulo and texto_articulo and foto:
+        # print("entro por aca 3")
         cursor = db.database.cursor()
-        sql = "UPDATE usuario SET nombre = %s, username = %s, contrasena = %s WHERE id = %s"
-        data = (nombre, username, contrasena, id)
+        sql = "UPDATE articulo SET titulo = %s, texto_articulo = %s, imagen = %s WHERE id = %s"
+        data = (titulo, texto_articulo,ruta_nuevoNombreFoto, id)
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('home'))
 
 
-#ejecucion directa de este archivo en modo de desarrollador en el puerto 4000 del localhost o servidor local creado por flask.
+
+
+    #ejecucion directa de este archivo en modo de desarrollador en el puerto 4000 del localhost o servidor local creado por flask.
 if __name__ == '__main__':
     app.run(debug=True, port=4000)

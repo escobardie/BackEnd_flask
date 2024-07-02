@@ -24,10 +24,15 @@ SELECT * FROM usuario;
 
 CREATE TABLE IF NOT EXISTS articulo (
 	id INT UNSIGNED AUTO_INCREMENT,
-    id_usuario INT UNSIGNED NOT NULL,
-    PRIMARY KEY(id),
-    FOREIGN KEY(id_usuario) REFERENCES usuario(id)
+    ##id_usuario INT UNSIGNED NOT NULL,
+    titulo varchar(45) NOT NULL,
+    texto_articulo varchar(250) NOT NULL,
+    imagen varchar(200) NOT NULL,
+    PRIMARY KEY(id)
+    #FOREIGN KEY(id_usuario) REFERENCES usuario(id)
 );
+
+DROP TABLE articulo;
 
 ALTER TABLE articulo
 ADD COLUMN texto_articulo varchar(250) NOT NULL;
