@@ -11,12 +11,12 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
     <!-- Agrego el flaticon-->
-    <link rel="icon" href="assets/img/Flaticon/noticias.png">
+    <link rel="icon" href="{{url_for('static', filename='assets/img/Flaticon/noticias.png')}}">
     <title>DELU</title>
 </head>
 
 <body>
-    <header class="p-3 mb-3 border-bottom" >
+    <header class="p-3 mb-3 border-bottom">
         <div class="container">
             <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
                 <a href="#" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
@@ -24,23 +24,21 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="index.html" class="nav-link px-2 link-secondary">Inicio</a></li>
-                    <!--Quito la opcion de page en el nav-->
-                    <li><a href="contacto.html" class="nav-link px-2 link-dark">Contactanos</a></li>
-                    <li><a href="nosotros.html" class="nav-link px-2 link-dark">Nosotros</a></li>
+                    <li><a href="/" class="nav-link px-2 link-secondary">Inicio</a></li>
+                    <li><a href="contacto" class="nav-link px-2 link-dark">Contactanos</a></li>
+                    <li><a href="nosotros" class="nav-link px-2 link-dark">Nosotros</a></li>
                 </ul>
-                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <!--Quito el link de registro ya que esta el usuario activo-->
+                <!--<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li> <a href="login.html" class="nav-link">Registrarse/Ingresar</a></li>
-                </ul>
+                </ul>-->
                 <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3">
                     <input type="search" class="form-control" placeholder="Buscar..." aria-label="Search">
                 </form>
 
-                <!--Quito Usuario porque esta la opcion de registro/ingreso
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <span class="user_name">User_name</span>
-                        <img src="../public/assets/img/user/user.jpg" alt="imagen de usuario" width="32" height="32" class="rounded-circle">
+                        <img src="{{url_for('static', filename='assets/img/user/user.jpg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">Mi perfil</a></li>
@@ -49,9 +47,10 @@
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Cerrar sesión</a></li>
+                        <!--Agrego index en cerrar sesion-->
+                        <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
                     </ul>
-                </div>-->
+                </div>
             </div>
         </div>
     </header>
@@ -72,21 +71,21 @@
                         </div>
                         <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
                             <div class="card card-cover">
-                                <img src="assets/img/carusel/autos.jpg" class="w-100" alt="autos">
+                                <img src="{{url_for('static', filename='assets/img/carusel/autos.jpg')}}" class="w-100" alt="autos">
                                 <a href="single_page.html">Autos</a>
                                   
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
                             <div class="card card-cover">
-                                <img src="assets/img/carusel/comida.jpg" class="w-100" alt="comida">
+                                <img src="{{url_for('static', filename='assets/img/carusel/comida.jpg')}}" class="w-100" alt="comida">
                                 <a href="single_page.html">Comida</a>
                                   
                             </div>
                         </div>
                         <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
                             <div class="card card-cover">
-                                <img src="assets/img/carusel/futbol.jpg" class="w-100" alt="futbol" >
+                                <img src="{{url_for('static', filename='assets/img/carusel/futbol.jpg')}}" class="w-100" alt="futbol" >
                                 <a href="single_page.html">Futbol</a>
                                     
                                 
@@ -94,7 +93,7 @@
                         </div>
                         <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
                             <div class="card card-cover">
-                                <img src="assets/img/carusel/tecnologia.jpg" class="w-100" alt="tecno" >
+                                <img src="{{url_for('static', filename='assets/img/carusel/tecnologia.jpg')}}" class="w-100" alt="tecno" >
                                 <a href="single_page.html">Tecnología</a>
                                     
                                 
@@ -102,7 +101,7 @@
                         </div>
                         <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
                             <div class="card card-cover">
-                                <img src="assets/img/carusel/podcast.jpg" class="w-100" alt="podcast" >
+                                <img src="{{url_for('static', filename='assets/img/carusel/podcast.jpg')}}" class="w-100" alt="podcast" >
                                 <a href="single_page.html">Podcast</a>
                             </div>
                         </div>
@@ -115,8 +114,37 @@
         <h2 class="pb-2 border-bottom">Últimas notas</h2>
 
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            {% for d in data2 %}
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('assets/img/card/unsplash-photo-1.jpg');">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename=d.imagen)}}');">
+                    
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        
+                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> <a href="single_page.html">{{d.titulo}}</a></h2>
+                        <ul class="d-flex list-unstyled mt-auto">
+                            <li class="me-auto">
+
+                            </li>
+                            <li class="d-flex align-items-center me-3">
+                                <svg class="bi me-2" width="1em" height="1em">
+                                    <use xlink:href="#geo-fill" />
+                                </svg>
+                                <small>CATEGORIA</small>
+                            </li>
+                            <li class="d-flex align-items-center">
+                                <svg class="bi me-2" width="1em" height="1em">
+                                    <use xlink:href="#calendar3" />
+                                </svg>
+                                <small>FECHA</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            <!--
+            <div class="col">
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-1.jpg')}}');">
                     
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                         
@@ -143,8 +171,7 @@
             </div>
 
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('assets/img/card/unsplash-photo-2.jpg');">
-                    
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-2.jpg')}}');">
                     <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
                         <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="single_page.html">Nueva especie de planta carnivora</a></h2>
                         <ul class="d-flex list-unstyled mt-auto">
@@ -169,10 +196,9 @@
             </div>
 
             <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('assets/img/card/unsplash-photo-3.jpg');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
-                       
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> <a href="single_page.html">¿Qué era lo que se vió en los cielos de EEUU?</a></h2>
+                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-1.jpg')}}');">
+                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="single_page.html">¿Qué era lo que se vió en los cielos de EEUU?</a></h2>
                         <ul class="d-flex list-unstyled mt-auto">
                             <li class="me-auto">
 
@@ -181,23 +207,37 @@
                                 <svg class="bi me-2" width="1em" height="1em">
                                     <use xlink:href="#geo-fill" />
                                 </svg>
-                                <small>California</small>
+                                <small>Pakistan</small>
                             </li>
                             <li class="d-flex align-items-center">
                                 <svg class="bi me-2" width="1em" height="1em">
                                     <use xlink:href="#calendar3" />
                                 </svg>
-                                <small>5d</small>
+                                <small>4d</small>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </div>
     <div class="container">
         <div class="row align-items-center">
-
+            {% for d in data %}
+            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
+                <img src="{{url_for('static', filename=d.imagen)}}"  class="card-img-top" alt="Uber promete exclusivas para miembros">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        {{d.titulo}}
+                  </h5>
+                    <p class="card-text">
+                        {{d.texto_articulo}}
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+<!--
             <div class=" flex-1 col-3 m-2" style="width: 18rem;">
                 <img src="https://techcrunch.com/wp-content/uploads/2023/05/GettyImages-1142304853-a.jpg?resize=1200,800" class="card-img-top" alt="Uber promete exclusivas para miembros">
                 <div class="card-body">
@@ -211,7 +251,6 @@
                 </div>
 
             </div>
-
             <div class=" flex-1 col-3 m-2" style="width: 18rem;">
                 <img src="https://techcrunch.com/wp-content/uploads/2024/05/wildfire_drone_web.jpg?resize=1200,800" class="card-img-top" alt="La controvertida empresa de drones Xtend">
                 <div class="card-body">
@@ -223,7 +262,6 @@
 
                 </div>
             </div>
-
             <div class=" flex-1 col-3 m-2" style="width: 18rem;">
                 <img src="https://techcrunch.com/wp-content/uploads/2024/05/alphafold-3-deepmind.jpg?resize=1200,800" class="card-img-top" alt="Google Deepmind lanza una gran actualización de AlphaFold">
                 <div class="card-body">
@@ -282,7 +320,7 @@
                     </p>
                 </div>
             </div>
-
+-->
         </div>
     </div>
     <br>
@@ -380,8 +418,8 @@
     <!-- End of .container -->
 
 
-    <script src="src/Script/script.js"></script>
-    <script src="src/Script/script_clima.js"></script>
+    <script src="{{url_for('static', filename='Script/script.js')}}"></script>
+    <script src="{{url_for('static', filename='Script/script_clima.js')}}"></script>
 </body>
 
 </html>

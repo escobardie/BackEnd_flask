@@ -1,16 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles/styles_clima.css')}}">
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <link rel="stylesheet" href="src/styles/styles.css">
-    <link rel="icon" href="assets/img/Flaticon/noticias.png">
-    <title>Nosotros</title>
+    <!-- Agrego el flaticon-->
+    <link rel="icon" href="{{url_for('static', filename='assets/img/Flaticon/noticias.png')}}">
+    <title>DELU</title>
 </head>
 
 <body>
@@ -22,11 +24,11 @@
                 </a>
 
                 <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                    <li><a href="index.html" class="nav-link px-2 link-secondary">Inicio</a></li>
-                    <li><a href="contacto.html" class="nav-link px-2 link-dark">Contactanos</a></li>
-                    <li><a href="nosotros.html" class="nav-link px-2 link-dark">Nosotros</a></li>
+                    <li><a href="/" class="nav-link px-2 link-secondary">Inicio</a></li>
+                    <li><a href="contacto" class="nav-link px-2 link-dark">Contactanos</a></li>
+                    <li><a href="nosotros" class="nav-link px-2 link-dark">Nosotros</a></li>
                 </ul>
-                <!--Quito Login ya esta el Usuario-->
+                <!--Quito el link de registro ya que esta el usuario activo-->
                 <!--<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                     <li> <a href="login.html" class="nav-link">Registrarse/Ingresar</a></li>
                 </ul>-->
@@ -36,7 +38,7 @@
 
                 <div class="dropdown text-end">
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-                        <img src="assets/img/user/user.jpg" alt="mdo" width="32" height="32" class="rounded-circle">
+                        <img src="{{url_for('static', filename='assets/img/user/user.jpg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                         <li><a class="dropdown-item" href="#">Mi perfil</a></li>
@@ -52,13 +54,12 @@
             </div>
         </div>
     </header>
-    <br>
     <div class="container px-4 py-5" >
         <h2 class="pb-2 border-bottom">Nosotros</h2>
                 <div class="container">
                     <div class="row">
                         <div class="column">
-                            <img src="assets/img/logo/delu_logo.jpg" class="card-img-top" alt="...">
+                            <img src="{{url_for('static', filename='assets/img/logo/delu_logo.jpg')}}" class="card-img-top" alt="...">
                         </div>
                         <div class="column">
                             <h4>Nosotros:</h4>
@@ -78,7 +79,7 @@
         <div class="row align-items-center">
 
             <div class="card flex-1 col-3 m-2" style="width: 18rem;" >
-                <img src="assets/img/nosotros/enzo.png" class="card-img-top" alt="INTEGRANTE - Estudiante">
+                <img src="{{url_for('static', filename='assets/img/nosotros/enzo.png')}}" class="card-img-top" alt="INTEGRANTE - Estudiante">
                 <div class="card-body">
                     <h5 class="card-title">
                         Bertolusso Enzo D.
@@ -89,7 +90,7 @@
                 </div>
             </div>
             <div class="card flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="assets/img/nosotros/diego.jpg" class="card-img-top" alt="INTEGRANTE - Estudiante">
+                <img src="{{url_for('static', filename='assets/img/nosotros/diego.jpg')}}"  class="card-img-top" alt="INTEGRANTE - Estudiante">
                 <div class="card-body">
                     <h5 class="card-title">
                         Escobar Diego M.
@@ -101,7 +102,7 @@
             </div>
 
             <div class="card flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="assets/img/nosotros/eyerlin.png" class="card-img-top" alt="INTEGRANTE - Estudiante">
+                <img src="{{url_for('static', filename='assets/img/nosotros/eyerlin.png')}}" class="card-img-top" alt="INTEGRANTE - Estudiante">
                 <div class="card-body">
                     <h5 class="card-title">
                         Fajardo Eyerlin
@@ -113,7 +114,7 @@
             </div>
 
             <div class="card flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="assets/img/nosotros/lau.jpeg" class="card-img-top" alt="INTEGRANTE - Estudiante">
+                <img src="{{url_for('static', filename='assets/img/nosotros/lau.jpeg')}}"  class="card-img-top" alt="INTEGRANTE - Estudiante">
                 <div class="card-body">
                     <h5 class="card-title">
                         Perovich Laura
@@ -131,62 +132,7 @@
     </div>
 
  
-    <div class="container my-5">
 
-        <section class="text-center">
-            <h2 class="pb-2 border-bottom">Tendencias</h2>
-            <div class="container p-4">
-                <!-- Section: Images -->
-                
-                    <div class="row">
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/animales.jpg" class="w-100" alt="Aniamles" >
-                                <a href="#">Animales</a>
-                                  
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/autos.jpg" class="w-100" alt="autos">
-                                <a href="#">Autos</a>
-                                  
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/comida.jpg" class="w-100" alt="comida">
-                                <a href="#">Comida</a>
-                                  
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/futbol.jpg" class="w-100" alt="futbol" >
-                                <a href="#">Futbol</a>
-                                    
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/tecnologia.jpg" class="w-100" alt="tecno" >
-                                <a href="#">Tecnología</a>
-                                    
-                                
-                            </div>
-                        </div>
-                        <div class="col-lg-2 col-md-12 mb-4 mb-md-0 image-container">
-                            <div>
-                                <img src="assets/img/carusel/podcast.jpg" class="w-100" alt="podcast" >
-                                <a href="#">Podcast</a>
-                            </div>
-                        </div>
-                    </div>
-               
-            </div>
-        </section>
-    </div>
    <!--<div class="container my-5">-->
 
         <footer class="text-center text-lg-start text-white" style="background-color: #125958">
@@ -274,7 +220,9 @@
         <!-- Footer -->
   
     <!-- End of .container -->
-    <script src="src/Script/script.js"></script>
+
+    <script src="{{url_for('static', filename='Script/script.js')}}"></script>
+    <script src="{{url_for('static', filename='Script/script_clima.js')}}"></script>
 </body>
 
 </html>

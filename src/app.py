@@ -58,8 +58,26 @@ def home():
     
     # Cierra el cursor para liberar recursos de memoria.    
     cursor.close()
+
+    ############### LISTA LIMITADA PARA POSTRAR ###############
+    cursor2 = db.database.cursor()
+    cursor2.execute("SELECT * FROM articulo ORDER BY id DESC limit 3;")
+    miResultado2 = cursor2.fetchall()
     
-    return render_template('index.html', data=insertarObjectos)
+    #Convertir los datos a diccionario
+    insertarObjectos2 = [] 
+    nombreDeColumnas2 = [columna[0] for columna in cursor2.description]
+    
+    for unRegistro in miResultado2:
+        insertarObjectos2.append(dict(zip(nombreDeColumnas2, unRegistro)))
+    
+    # Cierra el cursor para liberar recursos de memoria.    
+    cursor2.close()
+    ############### LISTA LIMITADA PARA POSTRAR ###############
+
+    
+    
+    return render_template('index.html', data=insertarObjectos, data2=insertarObjectos2)
 
 
 # #Ruta para guardar usuarios en la bdd
@@ -103,7 +121,23 @@ def home():
 #         cursor.execute(sql, data)
 #         db.database.commit()
 #     return redirect(url_for('home'))
-
+@app.route('/listado_interno')
+def listado_interno():
+    cursor = db.database.cursor()
+    cursor.execute("SELECT * FROM articulo ORDER BY id DESC")
+    miResultado = cursor.fetchall()
+    
+    #Convertir los datos a diccionario
+    insertarObjectos = [] 
+    nombreDeColumnas = [columna[0] for columna in cursor.description]
+    
+    for unRegistro in miResultado:
+        insertarObjectos.append(dict(zip(nombreDeColumnas, unRegistro)))
+    
+    # Cierra el cursor para liberar recursos de memoria.    
+    cursor.close()
+    
+    return render_template('listado_interno.html', data=insertarObjectos)
 
 
 @app.route('/carga')
@@ -134,7 +168,7 @@ def articulo_art():
         data = (titulo, texto_articulo,ruta_nuevoNombreFoto)
         cursor.execute(sql, data)
         db.database.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('listado_interno'))
 
 
 @app.route('/eliminar_art/<string:id>')
@@ -144,7 +178,7 @@ def eliminar_art(id):
     data = (id,)
     cursor.execute(sql, data)
     db.database.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('listado_interno'))
 
 @app.route('/editar_art/<string:id>', methods=['POST'])
 def edit_art(id):
@@ -177,8 +211,17 @@ def edit_art(id):
         data = (titulo, texto_articulo,ruta_nuevoNombreFoto, id)
         cursor.execute(sql, data)
         db.database.commit()
-    return redirect(url_for('home'))
+    return redirect(url_for('listado_interno'))
 
+
+
+@app.route('/contacto')
+def contacto():
+    return render_template('contacto.html')
+
+@app.route('/nosotros')
+def nosotros():
+    return render_template('nosotros.html')
 
 
 
