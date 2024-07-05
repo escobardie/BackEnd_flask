@@ -41,15 +41,14 @@
                         <img src="{{url_for('static', filename='assets/img/user/user.jpg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="/">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="/">Carga Noticia</a></li>
-                        <li><a class="dropdown-item" href="listado_interno">Listado Noticias</a></li>
-                        <li><a class="dropdown-item" href="listado_interno_contactos">Solicitud Contacto</a></li>
+                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Configuraciones</a></li>
+                        <li><a class="dropdown-item" href="#">Mis posts</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <!--Agrego index en cerrar sesion-->
-                        <li><a class="dropdown-item" href="/">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
                     </ul>
                 </div>
             </div>
@@ -68,23 +67,25 @@
                     width="600" height="450" style="width:100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
                 <div class="column">
-                    <form  action="/solicitud_contacto" method="POST">
+                    <form  onsubmit="return validacionformcontacto();">
                         
+
                         <label for="namecontact">Nombre</label><label id="mensajename"></label>
-                        <input type="text"  name="nombre" placeholder="Tu Nombre." required>
+                        <input type="text" id="fname" name="firstname" placeholder="Tu Nombre.">
                         
-                        <label for="apellidocontact">Apellido</label><label id="mensajeapell" ></label>
-                        <input type="text"  name="apellido" placeholder="Tu Apellido." required>
+                        <label for="apellidocontact">Apellido</label><label id="mensajeapell"></label>
+                        <input type="text" id="lname" name="lastname" placeholder="Tu Apellido." >
 
                         <label for="country">Ubicacion</label><label id="mensajeubi"></label>            
                         <div id="mainMenu"></div>
-
                         <label for="email">Email</label><label id="mensajeemail"></label>
-                        <input type="text" name="email" placeholder="Ingrese su email" required>
-
+                        <input type="text" id="email" placeholder="Ingrese su email">
+        
+                        <!--<label for="apellidocontact">Asunto</label><label id="mensajeasun"></label>
+                        <input type="text" id="asunt" name="asunt" placeholder="Asunto." >
+                        -->
                         <label for="subject">Comentario</label><label id="mensajecomen"></label>
-                        <textarea  name="comentario" placeholder="Tu mensaje..." style="height:170px" maxlength="250" required></textarea>
-                        
+                        <textarea id="comentario" name="subject" placeholder="Tu mensaje..." style="height:170px" ></textarea>
                         <!--Agrego el checkbox-->
                         <div>
                             <input type="checkbox" name="checkbox" required> Acepto los terminos y condiciones 

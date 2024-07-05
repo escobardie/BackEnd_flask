@@ -41,14 +41,15 @@
                         <img src="{{url_for('static', filename='assets/img/user/user.jpg')}}" alt="mdo" width="32" height="32" class="rounded-circle">
                     </a>
                     <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                        <li><a class="dropdown-item" href="#">Mi perfil</a></li>
-                        <li><a class="dropdown-item" href="#">Configuraciones</a></li>
-                        <li><a class="dropdown-item" href="#">Mis posts</a></li>
+                        <li><a class="dropdown-item" href="/">Mi perfil</a></li>
+                        <li><a class="dropdown-item" href="/">Carga Noticia</a></li>
+                        <li><a class="dropdown-item" href="listado_interno">Listado Noticias</a></li>
+                        <li><a class="dropdown-item" href="listado_interno_contactos">Solicitud Contacto</a></li>
                         <li>
                             <hr class="dropdown-divider">
                         </li>
                         <!--Agrego index en cerrar sesion-->
-                        <li><a class="dropdown-item" href="index.html">Cerrar sesión</a></li>
+                        <li><a class="dropdown-item" href="/">Cerrar sesión</a></li>
                     </ul>
                 </div>
             </div>
@@ -115,212 +116,52 @@
 
         <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
             {% for d in data2 %}
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename=d.imagen)}}');">
-                    
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                <div class="col">
+                    <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename=d.imagen)}}');">
                         
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> <a href="single_page.html">{{d.titulo}}</a></h2>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
+                        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                            
+                            <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> <a href="single_page.html">{{d.titulo}}</a></h2>
+                            <ul class="d-flex list-unstyled mt-auto">
+                                <li class="me-auto">
 
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#geo-fill" />
-                                </svg>
-                                <small>CATEGORIA</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#calendar3" />
-                                </svg>
-                                <small>FECHA</small>
-                            </li>
-                        </ul>
+                                </li>
+                                <li class="d-flex align-items-center me-3">
+                                    <svg class="bi me-2" width="1em" height="1em">
+                                        <use xlink:href="#geo-fill" />
+                                    </svg>
+                                    <small>CATEGORIA</small>
+                                </li>
+                                <li class="d-flex align-items-center">
+                                    <svg class="bi me-2" width="1em" height="1em">
+                                        <use xlink:href="#calendar3" />
+                                    </svg>
+                                    <small>FECHA</small>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
-            <!--
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-1.jpg')}}');">
-                    
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"> <a href="single_page.html">Hay vida en la luna</a></h2>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#geo-fill" />
-                                </svg>
-                                <small>Tierra</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#calendar3" />
-                                </svg>
-                                <small>3d</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-2.jpg')}}');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="single_page.html">Nueva especie de planta carnivora</a></h2>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#geo-fill" />
-                                </svg>
-                                <small>Pakistan</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#calendar3" />
-                                </svg>
-                                <small>4d</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col">
-                <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg" style="background-image: url('{{url_for('static', filename='assets/img/card/unsplash-photo-1.jpg')}}');">
-                    <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-                        <h2 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold"><a href="single_page.html">¿Qué era lo que se vió en los cielos de EEUU?</a></h2>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="me-auto">
-
-                            </li>
-                            <li class="d-flex align-items-center me-3">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#geo-fill" />
-                                </svg>
-                                <small>Pakistan</small>
-                            </li>
-                            <li class="d-flex align-items-center">
-                                <svg class="bi me-2" width="1em" height="1em">
-                                    <use xlink:href="#calendar3" />
-                                </svg>
-                                <small>4d</small>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            -->
         </div>
     </div>
-    <div class="container">
+    <div class="container px-4 py-5" id="custom-cards">
+        <h2 class="pb-2 border-bottom">Noticias</h2>
         <div class="row align-items-center">
             {% for d in data %}
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="{{url_for('static', filename=d.imagen)}}"  class="card-img-top" alt="Uber promete exclusivas para miembros">
-                <div class="card-body">
-                    <h5 class="card-title">
-                        {{d.titulo}}
-                  </h5>
-                    <p class="card-text">
-                        {{d.texto_articulo}}
-                    </p>
+                <div class=" flex-1 col-3 m-2" style="width: 18rem;">
+                    <img src="{{url_for('static', filename=d.imagen)}}"  class="card-img-top" alt="Uber promete exclusivas para miembros">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            {{d.titulo}}
+                    </h5>
+                        <p class="card-text">
+                            {{d.texto_articulo}}
+                        </p>
+                    </div>
                 </div>
-            </div>
             {% endfor %}
-<!--
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2023/05/GettyImages-1142304853-a.jpg?resize=1200,800" class="card-img-top" alt="Uber promete exclusivas para miembros">
-                <div class="card-body">
-                    <h5 class="card-title">
-                    Uber promete exclusivas para miembros
-                  </h5>
-                    <p class="card-text">
-                        Uber planea ofrecer más beneficios a los miembros de Uber One, como eventos exclusivos para miembros, en un intento por aumentar los ingresos a través de suscripciones. 
-                    </p>
 
-                </div>
-
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/wildfire_drone_web.jpg?resize=1200,800" class="card-img-top" alt="La controvertida empresa de drones Xtend">
-                <div class="card-body">
-                    <h5 class="card-title">La controvertida empresa de drones Xtend</h5>
-                    <p class="card-text">
-                        Xtend, una empresa de drones muy involucrada con clientes de defensa, ha recaudado una nueva ronda de capital para expandir sus operaciones
-                    </p>
-
-
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/alphafold-3-deepmind.jpg?resize=1200,800" class="card-img-top" alt="Google Deepmind lanza una gran actualización de AlphaFold">
-                <div class="card-body">
-                    <h5 class="card-title">Google Deepmind lanza una gran actualización de AlphaFold</h5>
-                    <p class="card-text">
-                        Google Deepmind ha presentado una nueva versión de AlphaFold, su modelo de aprendizaje automático transformador que predice la [...]
-
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/Minecraft-keyart.jpg?resize=1200,800" class="card-img-top" alt="Bye-bye bots: Altera's game-playing AI agents get backing from Eric Schmidt">
-                <div class="card-body">
-                    <h5 class="card-title">Adiós, bots</h5>
-                    <p class="card-text">
-                        Los jugadores autónomos basados en IA están llegando a una experiencia de juego cerca de ti, y una nueva startup, Altera, se está uniendo a la contienda para [...]</p>
-                    
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/ipad-noplay.png?resize=1200,800" class="card-img-top" alt="Los iPads tan caros como los MacBooks?">
-                <div class="card-body">
-                    <h5 class="card-title">¿Los iPads tan caros como los MacBooks?</h5>
-                    <p class="card-text">
-                        ¿Cambiarías tu MacBook por un iPad con un chip M4 y pantalla OLED? Con el aumento de precio, Apple parece argumentar que son  [...]
-                    </p>
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2023/07/GettyImages-942480316.jpg?resize=1200,800" class="card-img-top" alt="Buenas noticias para las startups de criptomonedas">
-                <div class="card-body">
-                    <h5 class="card-title">Buenas noticias para las startups de criptomonedas</h5>
-                    <p class="card-text">
-                        No solo tenemos buenas noticias para los fundadores de criptomonedas, también estamos profundizando en la inversión de 450 millones de dólares de [...]</p>
-
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/Checkfirst-team.jpg?resize=1200,800" class="card-img-top" alt="Checkfirst recauda $1.5M en ronda pre-semilla">
-                <div class="card-body">
-                    <h5 class="card-title">Checkfirst recauda $1.5M en ronda pre-semilla</h5>
-                    <p class="card-text">
-                        Checkfirst permite a las empresas programar inspectores según la ubicación geográfica y las cualificaciones, además de permitir inspecciones remotas.
-                    </p>
-
-
-                </div>
-            </div>
-            <div class=" flex-1 col-3 m-2" style="width: 18rem;">
-                <img src="https://techcrunch.com/wp-content/uploads/2024/05/GettyImages-1259121938-e1715164252704.jpg?resize=1200,800" class="card-img-top" alt="Monzo se prepara para la expansión en EE.UU.">
-                <div class="card-body">
-                    <h5 class="card-title">
-                       Monzo se prepara para la expansión en EE.UU
-                  </h5>
-                    <p class="card-text">
-                        Monzo ha recaudado otros 190 millones de dólares, ya que el banco desafiante busca expandir su presencia internacionalmente, particularmente en los EE.UU
-                    </p>
-                </div>
-            </div>
--->
         </div>
     </div>
     <br>

@@ -14,3 +14,8 @@ INSERT INTO articulo (titulo, texto_articulo, imagen)
 VALUES ('ULTIMO', 'ESTE ES EL ULTIMO', 'media/noticias/img/2024012030tenor (1).gif');
 
 SELECT * FROM articulo ORDER BY id DESC limit 3;
+
+INSERT INTO contacto (nombre, apellido, email, comentario)
+VALUES ('diego', 'escobar', 'diego@diego.com', 'comentario para completar.');
+
+SELECT * FROM contacto;

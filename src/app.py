@@ -74,9 +74,7 @@ def home():
     # Cierra el cursor para liberar recursos de memoria.    
     cursor2.close()
     ############### LISTA LIMITADA PARA POSTRAR ###############
-
-    
-    
+ 
     return render_template('index.html', data=insertarObjectos, data2=insertarObjectos2)
 
 
@@ -139,12 +137,12 @@ def listado_interno():
     
     return render_template('listado_interno.html', data=insertarObjectos)
 
-
+######################### INICIO CRUD DE NOTICIAS #########################
 @app.route('/carga')
 def carga():
     return render_template('carga.html')
 #Ruta para guardar usuarios en la bdd
-
+######################### CARGA DE NOTICIAS #########################
 @app.route('/articulo_art', methods=['POST'])
 def articulo_art():
     ##################
@@ -169,8 +167,7 @@ def articulo_art():
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('listado_interno'))
-
-
+######################### ELIMINACION DE NOTICIAS #########################
 @app.route('/eliminar_art/<string:id>')
 def eliminar_art(id):
     cursor = db.database.cursor()
@@ -179,7 +176,7 @@ def eliminar_art(id):
     cursor.execute(sql, data)
     db.database.commit()
     return redirect(url_for('listado_interno'))
-
+######################### EDICION DE NOTICIAS #########################
 @app.route('/editar_art/<string:id>', methods=['POST'])
 def edit_art(id):
     ##################
@@ -212,12 +209,56 @@ def edit_art(id):
         cursor.execute(sql, data)
         db.database.commit()
     return redirect(url_for('listado_interno'))
+######################### FINDE CRUD DE NOTICIAS #########################
 
-
-
+######################### INICIO DE CONTACTO #########################
 @app.route('/contacto')
 def contacto():
     return render_template('contacto.html')
+######################### FORMULARIO DE CONTACTO #########################
+@app.route('/solicitud_contacto', methods=['POST'])
+def solicitud_contacto():
+
+    nombre = request.form['nombre']
+    apellido = request.form['apellido']
+    email = request.form['email']
+    comentario = request.form['comentario']
+
+    if nombre and apellido and email and comentario:
+        cursor = db.database.cursor()
+        sql = "INSERT INTO contacto (nombre, apellido, email, comentario) VALUES (%s, %s, %s, %s)"
+        data = (nombre, apellido, email, comentario)
+        cursor.execute(sql, data)
+        db.database.commit()
+    return redirect(url_for('contacto'))
+######################### LISTA DE CONTACTO #########################
+@app.route('/listado_interno_contactos')
+def listado_interno_contactos():
+    cursor = db.database.cursor()
+    cursor.execute("SELECT * FROM contacto")
+    miResultado = cursor.fetchall()
+    
+    #Convertir los datos a diccionario
+    insertarObjectos = [] 
+    nombreDeColumnas = [columna[0] for columna in cursor.description]
+    
+    for unRegistro in miResultado:
+        insertarObjectos.append(dict(zip(nombreDeColumnas, unRegistro)))
+    
+    # Cierra el cursor para liberar recursos de memoria.    
+    cursor.close()
+    
+    return render_template('listado_interno_contactos.html', data=insertarObjectos)
+######################### ELIMINACION DE CONTACTO #########################
+@app.route('/eliminar_solicitud_contacto/<string:id>')
+def eliminar_solicitud_contacto(id):
+    cursor = db.database.cursor()
+    sql = "DELETE FROM contacto WHERE id = %s"
+    data = (id,)
+    cursor.execute(sql, data)
+    db.database.commit()
+    return redirect(url_for('listado_interno_contactos'))
+######################### FIN DE CONTACTO #########################
 
 @app.route('/nosotros')
 def nosotros():

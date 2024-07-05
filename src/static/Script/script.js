@@ -18,7 +18,7 @@ function traer() {
 traer();
 
 function tabla(datos) {
-    var mainMenu = "<select id='country' name= 'country'>";
+    var mainMenu = "<select id='country' name= 'country' required>";
     //var mainMenu = "<select>";
     //<select id="country" name="country">
     mainMenu += "<option value='"+"'>- Selecciona un pais -</option>";
@@ -77,6 +77,7 @@ function validacionformcontacto() {
 
         return false;
     } else {
+        /*console.log(form_name,  form_apellido, form_pais, form_email, form_coment)*/
         /*document.getElementById('msjenviado').innerHTML = "MENSAJE ENVIADO";*/
         alert("SE ENVIO CORRECTAMENTE");
         return true;
