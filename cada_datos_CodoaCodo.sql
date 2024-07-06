@@ -1,5 +1,10 @@
 USE cac_noticias;
+
+DROP TABLE articulo;
+
 SELECT * FROM usuario;
+
+
 
 insert into usuario(nombre, apellido, email, username, contrasena) 
 values('Juan','Perez','Juancito@hotmail.com','juanperez','1234');
@@ -19,3 +24,8 @@ INSERT INTO contacto (nombre, apellido, email, comentario)
 VALUES ('diego', 'escobar', 'diego@diego.com', 'comentario para completar.');
 
 SELECT * FROM contacto;
+SELECT * FROM articulo WHERE id='26';
+
+
+
+

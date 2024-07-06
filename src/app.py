@@ -128,20 +128,23 @@ def listado_interno():
     #Convertir los datos a diccionario
     insertarObjectos = [] 
     nombreDeColumnas = [columna[0] for columna in cursor.description]
-    
+    print("probando 1")
+    print(insertarObjectos)
     for unRegistro in miResultado:
         insertarObjectos.append(dict(zip(nombreDeColumnas, unRegistro)))
     
     # Cierra el cursor para liberar recursos de memoria.    
     cursor.close()
-    
+
+    print("probando 2")
+    print(insertarObjectos)
     return render_template('listado_interno.html', data=insertarObjectos)
 
 ######################### INICIO CRUD DE NOTICIAS #########################
-@app.route('/carga')
-def carga():
-    return render_template('carga.html')
-#Ruta para guardar usuarios en la bdd
+
+@app.route('/carga_noticias')
+def carga_noticias():
+    return render_template('carga_noticias.html')
 ######################### CARGA DE NOTICIAS #########################
 @app.route('/articulo_art', methods=['POST'])
 def articulo_art():
@@ -260,10 +263,34 @@ def eliminar_solicitud_contacto(id):
     return redirect(url_for('listado_interno_contactos'))
 ######################### FIN DE CONTACTO #########################
 
+######################### INICIO DE SINGLE PAGE #########################
+@app.route('/single_page/<string:id>')
+def single_page(id):
+    cursor = db.database.cursor()
+    sql = "SELECT * FROM articulo WHERE id = %s"
+    data = (id,)
+    cursor.execute(sql, data)
+    miResultado = cursor.fetchall()
+    
+    #Convertir los datos a diccionario
+    insertarObjectos = [] 
+    nombreDeColumnas = [columna[0] for columna in cursor.description]
+
+    for unRegistro in miResultado:
+        insertarObjectos.append(dict(zip(nombreDeColumnas, unRegistro)))
+    
+    # Cierra el cursor para liberar recursos de memoria.    
+    cursor.close()
+    
+    ## insertarObjectos = [{'id': 26, 'titulo': 'probando carga', 'texto_articulo': 'Estamos probando carga de noticias', 'imagen': 'media/noticias/img/2024141633IMG_20230802_165210.jpg'}] 
+    return render_template('single_page.html', data=insertarObjectos)
+
+######################### FIN DE SINGLE PAGE #########################
+
+
 @app.route('/nosotros')
 def nosotros():
     return render_template('nosotros.html')
-
 
 
     #ejecucion directa de este archivo en modo de desarrollador en el puerto 4000 del localhost o servidor local creado por flask.

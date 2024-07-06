@@ -32,6 +32,17 @@ CREATE TABLE IF NOT EXISTS articulo (
     #FOREIGN KEY(id_usuario) REFERENCES usuario(id)
 );
 
+
+## ULTIMA ACTUALIZACION
+CREATE TABLE IF NOT EXISTS articulo (
+	id INT UNSIGNED AUTO_INCREMENT,
+    titulo longtext NOT NULL,
+    texto_articulo longtext NOT NULL,
+    imagen varchar(200) NOT NULL,
+    PRIMARY KEY(id)
+);
+
+
 CREATE TABLE IF NOT EXISTS contacto (
 	id INT UNSIGNED AUTO_INCREMENT,
     nombre varchar(45) NOT NULL,
@@ -46,12 +57,10 @@ CREATE TABLE IF NOT EXISTS contacto (
 
 DROP TABLE articulo;
 
-ALTER TABLE articulo
-ADD COLUMN texto_articulo varchar(250) NOT NULL;
-
 DESCRIBE articulo;
+
 
 ALTER TABLE articulo
 ADD COLUMN titulo varchar(45) NOT NULL;
 
-DESCRIBE articulo;
+DESCRIBE articulo2;
